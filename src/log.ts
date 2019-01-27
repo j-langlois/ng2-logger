@@ -2,14 +2,6 @@ import { Logger } from './logger';
 import { Level } from './level';
 import { Display } from './display';
 import { contain } from './include';
-import { Helpers } from './helper';
-declare var require: any;
-
-if (Helpers.isNode) {
-  //#region @backend
-  var randomcolor = require('randomcolor');
-  //#endregion
-}
 
 export class Log {
 
@@ -21,10 +13,9 @@ export class Log {
       i = new Logger<TA>(
         name,
         Log.getRandomColor(),
-        Log.isDevelopmentMode,
         level,
         Log.isMutedModule(name),
-        Log.levels.length > 0 ? Log.fixedWidth : undefined,
+        Log.levels.length > 0 ? Log.fixedWidth : undefined
         // Log.levels.length > 0 ? Log.display : undefined,
       );
       Log.instances[name] = i;
@@ -35,12 +26,6 @@ export class Log {
   }
 
   private static getRandomColor(): string {
-    if (Helpers.isNode) {
-      //#region @backend
-      return randomcolor({ luminosity: 'light', count: 10 });
-      //#endregion
-    }
-
     let letters = '012345'.split('');
     let color = '#';
     color += letters[Math.round(Math.random() * 5)];

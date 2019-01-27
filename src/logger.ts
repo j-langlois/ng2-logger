@@ -10,7 +10,6 @@ export class Logger<T> {
   constructor(
     private name: string,
     public color: string,
-    private developmentMode: boolean,
     private allowed: Level[],
     private isMuted: boolean,
     public fixedWidth: number | undefined
